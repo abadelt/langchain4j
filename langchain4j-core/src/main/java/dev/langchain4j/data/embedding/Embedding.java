@@ -1,5 +1,6 @@
 package dev.langchain4j.data.embedding;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,8 +14,8 @@ import static dev.langchain4j.internal.ValidationUtils.ensureNotNull;
  * The embeddings are typically created by embedding models.
  * @see dev.langchain4j.model.embedding.EmbeddingModel
  */
-public class Embedding {
-
+public class Embedding implements Serializable {
+    private static final long serialVersionUID = -1L;
     private final float[] vector;
 
     public Embedding(float[] vector) {

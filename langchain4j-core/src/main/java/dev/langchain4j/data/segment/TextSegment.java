@@ -3,6 +3,7 @@ package dev.langchain4j.data.segment;
 
 import dev.langchain4j.data.document.Metadata;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import static dev.langchain4j.internal.Utils.quoted;
@@ -14,7 +15,8 @@ import static dev.langchain4j.internal.ValidationUtils.ensureNotNull;
  * This might be a sentence, a paragraph, or any other discrete unit of text that carries meaning.
  * This class encapsulates a piece of text and its associated metadata.
  */
-public class TextSegment {
+public class TextSegment implements Serializable {
+    private static final long serialVersionUID = -1L;
 
     private final String text;
     private final Metadata metadata;

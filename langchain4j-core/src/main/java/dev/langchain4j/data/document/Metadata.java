@@ -1,5 +1,6 @@
 package dev.langchain4j.data.document;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -14,7 +15,8 @@ import static dev.langchain4j.internal.ValidationUtils.ensureNotNull;
  * For a TextSegment, in addition to metadata copied from a document, it can also include segment-specific information,
  * such as the page number, the position of the segment within the document, chapter, etc.
  */
-public class Metadata {
+public class Metadata implements Serializable {
+    private static final long serialVersionUID = -1L;
 
     private final Map<String, String> metadata;
 
