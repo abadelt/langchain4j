@@ -12,6 +12,7 @@ class EmbeddingModel {
     private HuggingFace huggingFace;
     @NestedConfigurationProperty
     private LocalAi localAi;
+    private LlamaCpp llamaCpp;
 
     public ModelProvider getProvider() {
         return provider;
@@ -44,4 +45,13 @@ class EmbeddingModel {
     public void setLocalAi(LocalAi localAi) {
         this.localAi = localAi;
     }
+
+    public LlamaCpp getLlamaCpp() {
+        return llamaCpp;
+    }
+
+    public void setLlamaCpp(LlamaCpp llamaCpp) {
+        this.llamaCpp = llamaCpp;
+    }
+
 }

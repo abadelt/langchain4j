@@ -6,6 +6,7 @@ import dev.langchain4j.model.huggingface.HuggingFaceChatModel;
 import dev.langchain4j.model.huggingface.HuggingFaceEmbeddingModel;
 import dev.langchain4j.model.huggingface.HuggingFaceLanguageModel;
 import dev.langchain4j.model.language.LanguageModel;
+import dev.langchain4j.model.llamacpp.LlamaCppChatModel;
 import dev.langchain4j.model.localai.LocalAiChatModel;
 import dev.langchain4j.model.localai.LocalAiEmbeddingModel;
 import dev.langchain4j.model.localai.LocalAiLanguageModel;
@@ -93,6 +94,20 @@ public class LangChain4jAutoConfiguration {
                         .maxRetries(localAi.getMaxRetries())
                         .logRequests(localAi.getLogRequests())
                         .logResponses(localAi.getLogResponses())
+                        .build();
+
+            case LLAMA_CPP:
+                LlamaCpp llamaCpp = properties.getChatModel().getLlamaCpp();
+                if (llamaCpp == null || isNullOrBlank(llamaCpp.getModelPath())) {
+                    throw illegalConfiguration("\n\nPlease define 'langchain4j.chat-model.llama-cpp.model-name' property");
+                }
+                return LlamaCppChatModel.builder()
+                        .modelPath(llamaCpp.getModelPath())
+                        .temperature(llamaCpp.getTemperature())
+                        .topP(llamaCpp.getTopP())
+                        .maxTokens(llamaCpp.getMaxTokens())
+                        .logRequests(llamaCpp.getLogRequests())
+                        .logResponses(llamaCpp.getLogResponses())
                         .build();
 
             default:
